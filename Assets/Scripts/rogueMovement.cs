@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rogueMovement : MonoBehaviour
+public class RogueMovement : MonoBehaviour
 {
     [SerializeField] private float _speed = 0;
-    [SerializeField] private Rigidbody2D _rigidbody2D;
 
     private void FixedUpdate()
     {
@@ -13,6 +12,5 @@ public class rogueMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         transform.position = transform.position + new Vector3(horizontalInput * _speed * Time.deltaTime, verticalInput * _speed * Time.deltaTime, 0);
-
     }
 }

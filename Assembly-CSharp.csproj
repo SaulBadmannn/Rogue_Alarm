@@ -64,8 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\alarm.cs" />
-    <Compile Include="Assets\Scripts\rogueMovement.cs" />
+    <Compile Include="Assets\Scripts\Alarm.cs" />
+    <Compile Include="Assets\Scripts\Rogue.cs" />
+    <Compile Include="Assets\Scripts\RogueMovement.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

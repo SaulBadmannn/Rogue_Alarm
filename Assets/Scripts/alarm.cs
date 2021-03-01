@@ -13,20 +13,21 @@ public class Alarm : MonoBehaviour
     {
         if(collider.TryGetComponent<Rogue>(out Rogue rogue))
         {
-            var alarmIsPlay = StartCoroutine(IsYowl());
+            var alarmYowl = IsYowl();
 
             if (isActivated == false)
             {
                 Debug.Log("Запустить сигналку!");
                 alarmSound.Play();
                 isActivated = true;
+                StartCoroutine(alarmYowl);
             }
             else
             {
                 Debug.Log("Выключить сигналку!");
                 isActivated = false;
                 alarmSound.Stop();
-                StopCoroutine(alarmIsPlay);
+                StopCoroutine(alarmYowl);
             }
         }
     }

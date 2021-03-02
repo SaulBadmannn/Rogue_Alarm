@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Alarm : MonoBehaviour
 {
-    [SerializeField] public AudioSource alarmSound;
+    [SerializeField] private AudioSource _alarmSound;
     [SerializeField] private float _delayAlarm = 0.3f;
     [SerializeField] private float _stepAlarmVolume = 0.1f;
-    private bool isActivated = false;
+    private bool _isActivated = false;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -15,18 +15,18 @@ public class Alarm : MonoBehaviour
         {
             var alarmYowl = IsYowl();
 
-            if (isActivated == false)
+            if (_isActivated == false)
             {
                 Debug.Log("Запустить сигналку!");
-                alarmSound.Play();
-                isActivated = true;
+                _alarmSound.Play();
+                _isActivated = true;
                 StartCoroutine(alarmYowl);
             }
             else
             {
                 Debug.Log("Выключить сигналку!");
-                isActivated = false;
-                alarmSound.Stop();
+                _isActivated = false;
+                _alarmSound.Stop();
                 StopCoroutine(alarmYowl);
             }
         }
@@ -34,16 +34,16 @@ public class Alarm : MonoBehaviour
 
     private IEnumerator IsYowl()
     {
-        while (isActivated == true)
+        while (_isActivated == true)
         {
-            while (alarmSound.volume > 0)
+            while (_alarmSound.volume > 0)
             {
-                alarmSound.volume = Mathf.MoveTowards(alarmSound.volume, 0, _stepAlarmVolume);
+                _alarmSound.volume = Mathf.MoveTowards(_alarmSound.volume, 0, _stepAlarmVolume);
                 yield return new WaitForSeconds(_delayAlarm);
             }
-            while (alarmSound.volume < 1)
+            while (_alarmSound.volume < 1)
             {
-                alarmSound.volume = Mathf.MoveTowards(alarmSound.volume, 1, _stepAlarmVolume);
+                _alarmSound.volume = Mathf.MoveTowards(_alarmSound.volume, 1, _stepAlarmVolume);
                 yield return new WaitForSeconds(_delayAlarm);
             }
         }
